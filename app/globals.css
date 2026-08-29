@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-bg: var(--bg); --color-surface: var(--surface); --color-ink: var(--ink);
+  --color-muted: var(--muted); --color-line: var(--line); --color-accent: var(--accent);
+  --color-accentSoft: var(--accent-soft); --color-ok: var(--ok); --color-warn: var(--warn); --color-bad: var(--bad);
+  --color-background: var(--bg); --color-foreground: var(--ink); --color-card: var(--surface);
+  --color-card-foreground: var(--ink); --color-popover: var(--surface); --color-popover-foreground: var(--ink);
+  --color-primary: var(--accent); --color-primary-foreground: #fff; --color-secondary: var(--accent-soft);
+  --color-secondary-foreground: var(--accent); --color-muted-foreground: var(--muted);
+  --color-accent-foreground: #fff; --color-destructive: var(--bad); --color-destructive-foreground: #fff;
+  --color-border: var(--line); --color-input: var(--line); --color-ring: var(--accent);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+:root[data-theme="light"] {
+  --bg:#fff; --surface:#fff; --ink:#101828; --muted:#667085; --line:#e8eaf0;
+  --accent:#6255f5; --accent-soft:#f2efff; --ok:#12b76a; --warn:#f79009; --bad:#f04438;
+}
+:root[data-theme="dark"] {
+  --bg:#090b12; --surface:#111522; --ink:#f8fafc; --muted:#98a2b3; --line:#242b3b;
+  --accent:#8175ff; --accent-soft:#1d1a3a; --ok:#32d583; --warn:#fdb022; --bad:#f97066;
+}
+:root[data-contrast="high"] {
+  --bg:#000; --surface:#000; --ink:#fff; --muted:#ededed; --line:#fff;
+  --accent:#2563eb; --accent-soft:#0a1b4d; --ok:#00ff6a; --warn:#ffe600; --bad:#ff5c5c;
+}
+html { scroll-behavior:smooth; font-size:calc(16px * var(--font-scale, 1)); }
+:root[data-contrast="high"] * { text-decoration-skip-ink:none; }
+:root[data-contrast="high"] a { text-decoration:underline; }
+:root[data-contrast="high"] .editorial-card,
+:root[data-contrast="high"] button:not([class*="bg-accent"]),
+:root[data-contrast="high"] input,
+:root[data-contrast="high"] select,
+:root[data-contrast="high"] textarea { border-width:2px; }
+html,body { background:var(--bg); color:var(--ink); }
+body { font-family:var(--font-sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+* { border-color:var(--line); }
+.font-serif-display { font-family:var(--font-serif); letter-spacing:-.045em; }
+.font-mono { font-family:var(--font-mono); }
+::selection { background:#ddd9ff; color:#211b66; }
+button,a { -webkit-tap-highlight-color:transparent; }
+button:not(:disabled):active,a:active { transform:scale(.985); }
+button:not(:disabled):hover { box-shadow:0 8px 24px rgba(98,85,245,.10); }
+input:focus,select:focus,textarea:focus,button:focus-visible { outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent); outline-offset:2px; }
+.scrollbar-none::-webkit-scrollbar { display:none; }
+.scrollbar-none { -ms-overflow-style:none; scrollbar-width:none; }
+summary { list-style:none; }
+summary::-webkit-details-marker { display:none; }
+summary::marker { display:none; content:""; }
+.reveal { animation:fadeUp .6s cubic-bezier(.22,1,.36,1) both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+@keyframes pulseSoft { 0%,100%{opacity:1} 50%{opacity:.5} }
+.pulse-soft { animation:pulseSoft 1.8s ease-in-out infinite; }
+@keyframes drift { 0%,100%{transform:translate3d(0,0,0)} 50%{transform:translate3d(6px,-4px,0)} }
+.drift { animation:drift 4s ease-in-out infinite; }
+@keyframes wiggle { 0%,100%{transform:rotate(0)} 20%{transform:rotate(-8deg)} 40%{transform:rotate(7deg)} 60%{transform:rotate(-5deg)} 80%{transform:rotate(3deg)} }
+@keyframes themePop { from{opacity:0;transform:scale(.4) rotate(-45deg)} to{opacity:1;transform:scale(1) rotate(0)} }
+.editorial-rule { border-top:1px solid var(--line); }
+.editorial-label { font-family:var(--font-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.editorial-card { border:1px solid var(--line); background:var(--surface); border-radius:20px; box-shadow:0 12px 40px rgba(16,24,40,.05); }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
